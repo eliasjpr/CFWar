@@ -1,0 +1,11 @@
+[   
+	{
+        "whitelist"   : "security\\..*",
+        "securelist"  : "^reactor\\..*,^dashboard\\..*,^account\\..*",
+        "match"       : "event",
+        "roles"       : "moderator,coder",
+        "permissions" : "",
+        "redirect"    : "security.login",
+        "useSSL"      : false
+    }
+]

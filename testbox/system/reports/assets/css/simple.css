@@ -1,0 +1,24 @@
+
+/** status **/
+.passed { color: green; }
+.failed { color: orange; }
+.error { color: red; }
+.skipped{ color: blue;}
+div.skipped{ display: none;}
+/** utility **/
+.centered { text-align: center !important; }
+.inline{ display: inline !important; }
+.margin10{ margin: 10px; }
+.padding10{ padding: 10px; }
+.margin0{ margin: 0px; }
+.padding0{ padding: 0px; }
+.float-right{ float: right;}
+.float-left{ float: left;}
+/** boxes **/
+.box{ border:1px solid gray; margin: 10px 0px; padding: 10px; background-color: #f5f5f5}
+.buttonBar{ float:right; margin: 10px 5px 0px 10px }
+.debugdata{ display:none; }
+/** stats **/
+#globalStats{ background-color: #dceef4 }
+.specStatus, .reset{ cursor:pointer;}
+.suite{ margin-left: -1px;}
