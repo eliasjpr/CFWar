@@ -35,7 +35,7 @@ component{
 			login{
 				loginuser name="#user.fullName()#" password="#user.getHashedPassword()#" roles="#user.getRole()#";
 			}
-			setNextEvent('dashboard.index');
+			setNextEvent('reactor.index');
 
 		}else{
 
