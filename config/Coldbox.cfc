@@ -46,14 +46,18 @@
 
 		// custom settings
 		settings = {
-
+			messagebox_template = "/views/_templates/message_box.cfm"
+		};
+		environments = {
+			development = "^dev.,^staging."
 		};
 
-		// environment settings, create a detectEnvironment() method to detect it yourself.
-		// create a function with the name of the environment so it can be executed if that environment is detected
-		// the value of the environment is a list of regex patterns to match the cgi.http_host.
-		environments = {
-			//development = "^cf8.,^railo."
+		//Mailsettings
+		mailSettings = {
+			server   = "smtp.mailgun.org",
+			username = "postmaster@cfwars.com",
+			password = "b73b6a8a32aecb174fe9d6b8fc0dcad9",
+			port     = 587
 		};
 
 		// Module Directives
@@ -80,7 +84,7 @@
 
 		//Layout Settings
 		layoutSettings = {
-			defaultLayout = "",
+			defaultLayout = "app.cfm",
 			defaultView   = ""
 		};
 
@@ -93,52 +97,46 @@
 		//Register interceptors as an array, we need order
 		interceptors = [
 			//SES
-			{class="coldbox.system.interceptors.SES",
-			 properties={}
-			},
-			{ class="coldbox.system.interceptors.Security",
-				name="ApplicationSecurity", properties={ rulesSource = "json", rulesFile = "config/rules.json", preEventSecurity=false}
-            }
+			{class="coldbox.system.interceptors.SES", properties={} },
+			{ class="coldbox.system.interceptors.Security", name="ApplicationSecurity", properties={ rulesSource = "json", rulesFile = "config/rules.json", preEventSecurity=false} }
 		];
 
-		/*
-		// flash scope configuration
-		flash = {
-			scope = "session,client,cluster,ColdboxCache,or full path",
-			properties = {}, // constructor properties for the flash scope implementation
-			inflateToRC = true, // automatically inflate flash data into the RC scope
-			inflateToPRC = false, // automatically inflate flash data into the PRC scope
-			autoPurge = true, // automatically purge flash data for you
-			autoSave = true // automatically save flash scopes at end of a request and on relocations.
-		};
+
+
+		// ORM services, injection, etc
+		orm = { injection = {enabled = true}};
 
 		//Register Layouts
 		layouts = [
-			{ name = "login",
-		 	  file = "Layout.tester.cfm",
-			  views = "vwLogin,test",
-			  folders = "tags,pdf/single"
-			}
+			{ name = "app", 	file = "app.cfm"},
+			{ name = "blank", 	file = "blank.cfm"},
+			{ name = "mailer", 	file = "mailer.cfm"}
 		];
 
-
-
-		//Datasources
-		datasources = {
-			mysite   = {name="mySite", dbType="mysql", username="root", password="pass"},
-			blog_dsn = {name="myBlog", dbType="oracle", username="root", password="pass"}
-		};
-		*/
-	//Conventions
+		//Conventions
 		conventions = {
 			handlersLocation = "controllers",
 			pluginsLocation  = "plugins",
 			viewsLocation 	 = "views",
 			layoutsLocation  = "views",
 			modelsLocation 	 = "models",
+			modulesLocation  = "modules",
 			eventAction 	 = "index"
 		};
 
 	}
+
+	/**
+	* Executed whenever the development environment is detected
+	*/
+	function development(){
+		// Override coldbox directives
+		coldbox.handlerCaching  = false;
+		coldbox.eventCaching    = false;
+		handlersIndexAutoReload = true;
+		coldbox.debugPassword   = "";
+		coldbox.reinitPassword  = "";
+	}
+
 
 }
