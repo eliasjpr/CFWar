@@ -2,7 +2,7 @@
 * My Plugin Hint
 */
 component {
-    variables.from =  'eperez@imtechgraphics.com';
+    variables.from =  'noreply@cfwars.com';
     mailer function init(){
 
         // Plugin Properties
