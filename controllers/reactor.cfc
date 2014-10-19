@@ -1,6 +1,3 @@
-/**
-* I am a new handler
-*/
 component{
 
 	// OPTIONAL HANDLER PROPERTIES
@@ -15,7 +12,7 @@ component{
 	this.allowedMethods = {};
 
 	function index(event,rc,prc){
-		rc.cpuUsage = round(getcpuusage());
+		
 	}
 
 	function submit(event, rc, prc){
@@ -42,54 +39,34 @@ component{
 		event.paramValue("tests","");
 		event.paramValue("solution","");
 		rc.data["result"] = "";
-
-		savecontent variable = "rc.data.functions"{
-			writeOutput('
-			component extends="coldbox.system.testing.BaseTestCase" appMapping="/"{
-
-				/*********************************** LIFE CYCLE Methods ***********************************/
-
-				function beforeAll(){
-					super.beforeAll();
-					// do your own stuff here
-				}
-
-				function afterAll(){
-					// do your own stuff here
-					super.afterAll();
-				}
-
-				/*********************************** BDD SUITES ***********************************/
-				function run(){
-
-					describe( "Your Test Cases", function(){
-
-						beforeEach(function( currentSpec ){
-							// Setup as a new ColdBox request for this suite, VERY IMPORTANT. ELSE EVERYTHING LOOKS LIKE THE SAME REQUEST.
-							setup();
-						});
-
-						#rc.tests#
-					});
-
-				}
-
-				#rc.solution#
-			}')
-
+		
+		// TODO: Load compound injext preload code
+		var compound_name 	= "compound_#createUUID()#.cfc";
+		var test_file 		= expandPath('/tests/specs/integration/') & compound_name;
+		
+		// Create formula template
+		savecontent variable = "local.formula"{	
+			writeOutput(trim('component extends="coldbox.system.testing.BaseTestCase" appMapping="/"{
+				function beforeAll(){ super.beforeAll(); }
+				function afterAll(){ super.afterAll(); }
+				function run(){ #rc.tests# }
+				#rc.solution# }'));
 		}
-
-		fileWrite(expandPath('/tests/specs/integration/')&"dynamicTest.cfc", rc.data.functions );
+		
+		fileWrite(test_file, local.formula );
 
 		try{
-			var testbox 	= new testbox.system.TestBox("tests.specs.integration.dynamicTest");
+			// Create new instance of the formula
+			var testbox 	= new testbox.system.TestBox("tests.specs.integration.#listFirst(compound_name, '.')#");
+			
+			// Run the test to see if it passes
 			rc.data.result 	= testbox.run(reporter='simple' );
 
 		}catch(any e){
-			rc.data["result"] = e.message;
+			rc.data["result"] = e.detail;
 		}
-
-		fileDelete(expandPath('/tests/specs/integration/')&"dynamicTest.cfc");
+		
+		fileDelete(test_file);
 
 		event.renderData(type="json",data=rc.data);
 	}

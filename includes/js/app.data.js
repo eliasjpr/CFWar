@@ -54,7 +54,7 @@ $(document).ready(function() {
 
 
 	$('#submit').on('click', function(){
-		$('.logo').addClass('spin-logo')
+		$('.logo').addClass('spin-logo');
 		$.post('/reactor/submit',{solution: editor.getSession().getValue(), tests: editor2.getSession().getValue()}, function(data){
 
 		    $('#output').html(data.result).addClass('active');

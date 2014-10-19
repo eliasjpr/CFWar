@@ -1,10 +1,5 @@
-/**
-* I am a new Model Object
-*/
+
 component persistent="true" table="users"  extends="coldbox.system.orm.hibernate.ActiveEntity"{
-
-
-
 
 	// Primary Key
     property name="id" type="numeric" ormtype="int" fieldtype="id" generator="native" setter="false";
@@ -23,25 +18,10 @@ component persistent="true" table="users"  extends="coldbox.system.orm.hibernate
 	property name="phone" 			type="string" 	ormtype="string";
 	property name="brand" 			type="string" 	ormtype="string";
 
-	property name="createdDate" 	type="date" 	ormtype="date";
-
-	/* Relationships */
-	/* One to many */
-	property name="signoffs" singularname="signoffs" type="array" fieldtype="one-to-many" lazy="true" batchsize="10" fetch="select" cfc="signoff" 	fkcolumn="fkUserID" inverse="true";
-	property name="jobs" 	 singularname="job" 	 type="array" fieldtype="one-to-many" lazy="true" batchsize="10" fetch="select" cfc="job"		fkcolumn="fkUserID" inverse="true";
-	property name="medias" 	 singularname="media" 	 type="array" fieldtype="one-to-many" lazy="true" batchsize="10" fetch="select" cfc="media"		fkcolumn="fkUserID" inverse="true";
-
-	/* Many to One */
-	property name="business" fieldtype="many-to-one" cfc="business" fkcolumn="fkBusinessID" fetch="join";
-
-	/* Many to Many */
-	property name="groups" 	 singularname="group"  	 type="array" fieldtype="many-to-many" cfc="group" linktable="group_user" fkcolumn="fkUserID" inversejoincolumn="fkGroupID" lazy="true" fetch="select"  inverse="true";
-	property name="medias" 	 singularname="media"  	 type="array" fieldtype="many-to-many" cfc="media" linktable="media_recipients" fkcolumn="fkUserID" inversejoincolumn="fkMediaID" lazy="true" fetch="select"  inverse="true";
-
-
+	property name="createdat" 		type="date" 	ormtype="date";
 
     /* One to one*/
-    property name="setting" fieldtype="one-to-one" cfc="setting" mappedby="user" cascade="all-delete-orphan";
+    //property name="setting" fieldtype="one-to-one" cfc="setting" mappedby="user" cascade="all-delete-orphan";
 
 	// Validation Constraints
 	this.constraints= {
@@ -52,10 +32,8 @@ component persistent="true" table="users"  extends="coldbox.system.orm.hibernate
 
 	user function init(){
 
-        setSetting( entityNew('setting',{interval: 'n-e', carrier: '', sms:'', web:''}) );
-
-		setCreatedDate( now() );
-		setRole('guest');
+        setCreatedat( now() );
+		setRole('developer');
 		setfirstname('');
 		setlastname('');
 		setUsername('');
@@ -95,8 +73,7 @@ component persistent="true" table="users"  extends="coldbox.system.orm.hibernate
 	}
 
 	public string function gravatar(){
-        //return 'https://www.gravatar.com/avatar/#lcase(Hash(lcase(this.getEmailAddress())))#.png';
-        return 'http://#cgi.server_name#/images/avatars/24.jpg';
+        return 'https://www.gravatar.com/avatar/#lcase(Hash(lcase(this.getEmailAddress())))#.png';
     }
 
     public function setPassword( required string password){
@@ -116,15 +93,7 @@ component persistent="true" table="users"  extends="coldbox.system.orm.hibernate
         variables.hashedtoken = encrypt( createUUID(),  key , "AES",'Base64');;
     }
 
-    any function jobs_by_status(array status=[]){
-    	if( !arguments.status.len()){
-    		return ormExecuteQuery("FROM job WHERE user=:user AND lcase(status) NOT IN (:status) AND business=:business ", { user:this , status: 'completed', business = variables.business});
-    	}
-    	else{
-    		return ormExecuteQuery("FROM job WHERE user=:user AND status IN (:status) AND business=:business ", { user: this, status: arguments.status[1], business = variables.business});
-    	}
-    }
-
+   
     function validateEmail() {
         return (REFindNoCase("^['_a-z0-9-\+]+(\.['_a-z0-9-\+]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*\.(([a-z]{2,3}))$",
             getEmail()) AND len(listGetAt(getEmail(), 1, "@")) LTE 64 AND
@@ -182,18 +151,12 @@ component persistent="true" table="users"  extends="coldbox.system.orm.hibernate
 	public function asStruct(){
 		return {
             id           : variables.id,
-            fristname    : variables.firstname,
+            fullname	 : this.fullName(),
+            firstname    : variables.firstname,
             lastname     : variables.lastname,
             emailaddress : variables.emailAddress,
             gravatar     : this.gravatar(),
-            roles        : variables.role,
-			business:{
-                id        : this.getBusiness().getID(),
-                name      : this.getBusiness().getName(),
-                statuses  : this.getBusiness().getstatuses(),
-                locations : this.getBusiness().getLocations()
-			}
-		}
+            roles        : variables.role		}
 	}
 
 	public array function getRole(){
@@ -201,18 +164,6 @@ component persistent="true" table="users"  extends="coldbox.system.orm.hibernate
 	}
 
 
-    array function channels(){
-
-        return ormExecuteQuery('SELECT  m.number as channel
-                                FROM media m
-                                JOIN m.recipients as r
-                                WHERE r.id IN (:userID)', { userID: this.getID() });
-
-    }
-
-
-    array function getAllByIDs(required string people){
-        return ormExecuteQuery('FROM user WHERE id IN (:ids) ', { ids: arguments.people.listToArray() });
-    }
+   
 
 }

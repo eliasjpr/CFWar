@@ -42,7 +42,10 @@
                     <section class="panel no-borders bg-black dk">
                         <header class="panel-heading bg-black dker">
                             <i class="fa fa-code"></i> Your Solution:
-                            <i class="fa fa-arrows-alt fa-2 pull-right"></i>
+                            <ul class="nav nav-tabs pull-right">			                    
+                            	<li><a href="##profile-1" data-toggle="tab"><i class="fa fa-user text-default"></i> CFML</a></li>
+			                    <li><a href="##settings-1" data-toggle="tab"><i class="fa fa-cog text-default"></i> CFSCRIPT</a></li>
+			                </ul>
                         </header>
                         <div class="panel-body m-n no-padder">
                             <div id="editor"></div>

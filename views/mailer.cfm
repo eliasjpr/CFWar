@@ -426,12 +426,12 @@ ul li {
         <td align="center">
          <table>
                 <tr>
-                    <td width="60" align="left" >
                     <cfoutput>
-                      <img src="http://#cgi.server_name#/images/app-icon.png" width="50" height="50" hspace="10" alt="">
-                    </cfoutput>
-                   </td>
+                    <td width="60" align="left" >
+                      <img src="http://#cgi.server_name#/includes/images/logo.png" width="50" height="50" hspace="10" alt="">
+                    </td>
                     <td align="left" valign="top"><h1 style="padding:0; margin:0; font-size:48px">#getSetting('appName')#</h1></td>
+                    </cfoutput>
                 </tr>
             </table>
         </td>

@@ -4,7 +4,7 @@
         <a class="btn btn-link visible-xs" data-toggle="class:show" data-target=".nav-primary">
           <i class="fa fa-bars"></i>
         </a>
-        <a href="##" class="nav-brand bg-black dker" data-toggle="fullscreen"><img class="logo" src="/includes/images/logo.png" ></a>
+        <a href="##" class="nav-brand bg-black dker" data-toggle="fullscreen"><img class="logo" src="/includes/images/logo.png" width="40" ></a>
         <a class="btn btn-link visible-xs" data-toggle="collapse" data-target=".navbar-collapse">
           <i class="fa fa-comment-o"></i>
         </a>
@@ -59,9 +59,9 @@
           <li class="dropdown ">
             <a href="##" class="dropdown-toggle aside-sm" data-toggle="dropdown">
               <span class="thumb-sm avatar pull-left m-t-n-xs m-r-xs">
-                <img src="images/avatar.jpg">
+                <img src="#getPlugin('sessionStorage').getVar('user').gravatar#">
               </span>
-              John.Smith <b class="caret"></b>
+              #getPlugin('sessionStorage').getVar('user').fullname# <b class="caret"></b>
             </a>
             <ul class="dropdown-menu animated fadeInLeft dker ">
               <li>
