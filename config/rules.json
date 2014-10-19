@@ -3,7 +3,7 @@
         "whitelist"   : "security\\..*",
         "securelist"  : "^reactor\\..*,^dashboard\\..*,^account\\..*",
         "match"       : "event",
-        "roles"       : "moderator,coder",
+        "roles"       : "moderator,coder,developer",
         "permissions" : "",
         "redirect"    : "security.login",
         "useSSL"      : false
