@@ -2856,16 +2856,75 @@ hr {
     border-bottom: 1px dashed #222;
     background: #333;
 }
+
+#preview-text{
+	-webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+	padding:15px !important;
+	color: #b5b5b5 !important;
+	background-color:#090909 !important;
+	font-family: Consolas, monaco, monospace; !important;
+	text-rendering: optimizeLegibility;
+	font-weight: lighter !important;
+	font-size: 14px !important;
+	line-height: 1.6;
+	margin-bottom: 16px;
+}
+#preview-text a{
+	color: #acd8e6 !important;
+}
+
+#preview-text a:hover{
+	color: yellow !important;
+}
+
+#preview-text h1
+{	
+	font-size: 140%;
+	margin-bottom: 14px;
+	margin-top: 14px;
+}
+#preview-text h2{	
+	font-size: 130%;
+	margin-bottom: 14px;
+	margin-top: 14px;
+}
+#preview-text h3{	
+	font-size: 120%;
+	margin-bottom: 14px;
+	margin-top: 14px;
+}
+#preview-text h4{	
+	font-size: 110%;
+	margin-bottom: 14px;
+	margin-top: 14px;
+}
+#preview-text h5,
+#preview-text h6
+{	
+	
+	margin-bottom: 14px;
+	margin-top: 14px;
+}
+
+pre{
+	background-color: #030303 !important;
+	border:none !important;
+	border-radius: 0 !important;
+}
+#preview-text code{
+	background-color: #030303  !important;
+}
 /* ACE CODE EDITOR */
-#editor{
- min-height:100px;
- height:300px;
+#editor, #code-editor, #preloaded-editor{
+ min-height:300px;
+ height:500px;
 }
 
 
-#editor2 {
-    min-height:100px;
-    height:300px;
+#editor2, #test-cases, #markdown{
+    min-height:182px;
+    height:500px;
 }
 
 .center-block{

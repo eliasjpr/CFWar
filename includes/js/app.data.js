@@ -39,19 +39,26 @@ $(document).ready(function() {
         );
     }
 
-	var editor = ace.edit("editor");
-    editor.setTheme("ace/theme/tomorrow_night_bright");
-    editor.getSession().setMode("ace/mode/coldfusion");
-	editor.setAutoScrollEditorIntoView(true);
-    editor.setOption("maxLines", 100);
     
-    var editor2 = ace.edit("editor2");
-    editor2.setTheme("ace/theme/tomorrow_night_bright");
-    editor2.getSession().setMode("ace/mode/javascript");
-    editor2.setAutoScrollEditorIntoView(true);
-    editor2.setOption("maxLines", 30);
+    var tests = ace.edit("test-cases");
+    tests.setTheme("ace/theme/tomorrow_night_bright");
+    tests.getSession().setMode("ace/mode/javascript");
+    tests.setAutoScrollEditorIntoView(true);
+    tests.setOption("maxLines", 11);
+    
+    var code = ace.edit("code-editor");
+    code.setTheme("ace/theme/tomorrow_night_bright");
+    code.getSession().setMode("ace/mode/javascript");
+    code.setAutoScrollEditorIntoView(true);
+    code.setOption("maxLines", 20);
 
-
+	var preloaded = ace.edit("preloaded-editor");
+    preloaded.setTheme("ace/theme/tomorrow_night_bright");
+    preloaded.getSession().setMode("ace/mode/javascript");
+    preloaded.setAutoScrollEditorIntoView(true);
+    preloaded.setOption("maxLines", 20);
+    
+    
 
 	$('#submit').on('click', function(){
 		$('.logo').addClass('spin-logo');
@@ -67,7 +74,7 @@ $(document).ready(function() {
 	$('#run_tests').on('click', function(){
 		$('.logo').addClass('spin-logo')
 		$.post('/reactor/runtests',{solution: editor.getSession().getValue(), tests: editor2.getSession().getValue()}, function(data){
-		    console.log(data)
+		    
 		    $('#output').html(data.result).addClass('active');
 		    $('#tabs a:last').tab('show');
 
@@ -76,7 +83,7 @@ $(document).ready(function() {
 	});
 
 
-	window.setInterval('serverstatus()', 300);
+	//window.setInterval('serverstatus()', 300);
 
 
 });
