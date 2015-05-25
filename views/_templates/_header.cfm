@@ -35,7 +35,7 @@
                 <div class="list-group">
                   <a href="##" class="media list-group-item">
                     <span class="pull-left thumb-sm">
-                      <img src="images/avatar.jpg" alt="John said" class="img-circle">
+                      <img src="/includes/images/avatar.jpg" alt="John said" class="img-circle">
                     </span>
                     <span class="media-body block m-b-none">
                       Use awesome animate.css<br>

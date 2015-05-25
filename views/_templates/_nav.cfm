@@ -4,22 +4,23 @@
       <div class="slim-scroll" data-height="auto" data-disable-fade-out="true" data-distance="0" data-size="5px">
         <nav class="nav-primary hidden-xs nav-vertical" data-ride="collapse">
           <ul class="nav">
+            
             <li>
-              <a href="index.html">
+              <a href="/compounds">
+                <i class="fa fa-bookmark fa-2"></i>
+                <span>Compounds</span>
+              </a>
+            </li>
+            <li>
+              <a href="/snippets">
                 <i class="fa fa-bolt fa-2"></i>
-                <span>Discover</span>
+                <span>Snippets</span>
               </a>
             </li>
             <li>
               <a href="index.html">
-                <i class="fa fa-flask fa-2"></i>
-                <span>Discover</span>
-              </a>
-            </li>
-            <li>
-              <a href="index.html">
-                <i class="fa fa-comments fa-2"></i>
-                <span>Discover</span>
+                <i class="fa fa-file fa-2"></i>
+                <span>Formulas</span>
               </a>
             </li>
             <li>

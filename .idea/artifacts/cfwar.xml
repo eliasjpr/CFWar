@@ -1,0 +1,6 @@
+<component name="ArtifactManager">
+  <artifact type="war" build-on-make="true" name="cfwar">
+    <output-path>$PROJECT_DIR$/out/artifacts/cfwar</output-path>
+    <root id="archive" name="cfwar.war" />
+  </artifact>
+</component>

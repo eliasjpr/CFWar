@@ -6,6 +6,7 @@ $(document).ready(function() {
 	    $this.html(t.replace(/</g, '&lt;').replace(/>/g, '&gt;'));
 	});
 
+	$("abbr.timeago").timeago();
 
 
 	$(document).on('click', '.the-icons a', function(e){
@@ -40,59 +41,11 @@ $(document).ready(function() {
     }
 
     
-    var tests = ace.edit("test-cases");
-    tests.setTheme("ace/theme/tomorrow_night_bright");
-    tests.getSession().setMode("ace/mode/javascript");
-    tests.setAutoScrollEditorIntoView(true);
-    tests.setOption("maxLines", 11);
-    
-    var code = ace.edit("code-editor");
-    code.setTheme("ace/theme/tomorrow_night_bright");
-    code.getSession().setMode("ace/mode/javascript");
-    code.setAutoScrollEditorIntoView(true);
-    code.setOption("maxLines", 20);
-
-	var preloaded = ace.edit("preloaded-editor");
-    preloaded.setTheme("ace/theme/tomorrow_night_bright");
-    preloaded.getSession().setMode("ace/mode/javascript");
-    preloaded.setAutoScrollEditorIntoView(true);
-    preloaded.setOption("maxLines", 20);
-    
-    
-
-	$('#submit').on('click', function(){
-		$('.logo').addClass('spin-logo');
-		$.post('/reactor/submit',{solution: editor.getSession().getValue(), tests: editor2.getSession().getValue()}, function(data){
-
-		    $('#output').html(data.result).addClass('active');
-		    $('#tabs a:last').tab('show');
-
-		     $('.logo').removeClass('spin-logo')
-		});
-	});
-
-	$('#run_tests').on('click', function(){
-		$('.logo').addClass('spin-logo')
-		$.post('/reactor/runtests',{solution: editor.getSession().getValue(), tests: editor2.getSession().getValue()}, function(data){
-		    
-		    $('#output').html(data.result).addClass('active');
-		    $('#tabs a:last').tab('show');
-
-		    $('.logo').removeClass('spin-logo')
-		});
-	});
+   
 
 
-	//window.setInterval('serverstatus()', 300);
+	
 
 
 });
-
-function serverstatus(){
-	$.get('/reactor/serverstatus/',{},function(data){
-		$('.cpu-usage').data('easyPieChart').update(parseInt(data.cpuusage));
-		$('.memory-usage').data('easyPieChart').update(parseInt(data.usedmemory));
-		$('.memory-free').data('easyPieChart').update(parseInt(data.freememory));
-	})
-}
 

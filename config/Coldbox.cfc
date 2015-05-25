@@ -98,7 +98,8 @@
 		interceptors = [
 			//SES
 			{class="coldbox.system.interceptors.SES", properties={} },
-			{ class="coldbox.system.interceptors.Security", name="ApplicationSecurity", properties={ rulesSource = "json", rulesFile = "config/rules.json", preEventSecurity=false} }
+			{class="coldbox.system.interceptors.Security", name="ApplicationSecurity", 
+				properties={ rulesSource = "json", rulesFile = "config/rules.json", preEventSecurity=false} }
 		];
 
 

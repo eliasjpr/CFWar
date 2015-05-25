@@ -32,6 +32,7 @@ component persistent="true" table="users"  extends="coldbox.system.orm.hibernate
 
 	user function init(){
 
+
         setCreatedat( now() );
 		setRole('developer');
 		setfirstname('');

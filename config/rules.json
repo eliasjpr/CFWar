@@ -1,7 +1,7 @@
 [   
 	{
         "whitelist"   : "security\\..*",
-        "securelist"  : "^reactor\\..*,^dashboard\\..*,^account\\..*",
+        "securelist"  : "^reactor\\..*,^dashboard\\..*,^account\\..*,^compounds\\..*",
         "match"       : "event",
         "roles"       : "moderator,coder,developer",
         "permissions" : "",

@@ -19,7 +19,7 @@
 			                </ul>
                         </header>
                         <div class="panel-body m-n no-padder">
-                            <div id="editor"></div>
+                            <div id="code-editor"></div>
                         </div>
                     </section>
                 </div>
@@ -30,7 +30,7 @@
                             <i class="fa fa-arrows-alt fa-2 pull-right"></i>
                         </header>
                         <div class="panel-body m-n no-padder">
-                            <div id="editor2"></div>
+                            <div id="test-cases"></div>
                         </div>
                     </section>
                 </div>

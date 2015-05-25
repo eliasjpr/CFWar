@@ -1,6 +1,10 @@
-.dataTables_wrapper {
-  position: relative;
-}
+
+
+/*
+APP
+*/
+
+
 .dataTables_processing {
   position: absolute;
   top: 50%;
@@ -31,7 +35,7 @@
   margin-bottom: 0;
 }
 .dataTables_wrapper select,
-.dataTables_wrapper input {
+.dataTables_wrapper input[type="text"],.dataTables_wrapper input[type="search"] {
   font-size: 12px;
   height: 30px;
   padding: 5px 10px;
@@ -42,7 +46,7 @@
 .dataTables_wrapper select {
   width: 75px;
 }
-.dataTables_wrapper input {
+.dataTables_wrapper input[type="text"],.dataTables_wrapper input[type="search"]{
   width: 200px;
 }
 .dataTables_filter,
@@ -84,20 +88,114 @@
   cursor: pointer;
   outline: 0;
 }
-.dataTables_wrapper th:after {
-  font-family: FontAwesome;
-  color: #666;
+/*
+ * Sort styling
+ */
+table.dataTable thead th {
   position: relative;
-  font-weight: normal;
-  float: right;
+  background-image: none !important; /* Remove the DataTables bootstrap integration styling */
 }
-.dataTables_wrapper .sorting:after {
+
+table.dataTable thead th.sorting:after,
+table.dataTable thead th.sorting_asc:after,
+table.dataTable thead th.sorting_desc:after {
+  position: absolute;
+  top: 12px;
+  right: 8px;
+  display: block;
+  font-family: FontAwesome;
+}
+
+table.dataTable thead th.sorting:after {
   content: "\f0dc";
-  color: #ccc;
+  color: #ddd;
+  font-size: 0.8em;
+  padding-top: 0.12em;
 }
-.dataTables_wrapper .sorting_asc:after {
+table.dataTable thead th.sorting_asc:after {
   content: "\f0de";
 }
-.dataTables_wrapper .sorting_desc:after {
+table.dataTable thead th.sorting_desc:after {
   content: "\f0dd";
+}
+
+div.dataTables_scrollBody table.dataTable thead th.sorting:after,
+div.dataTables_scrollBody table.dataTable thead th.sorting_asc:after,
+div.dataTables_scrollBody table.dataTable thead th.sorting_desc:after {
+  content: "";
+}
+
+/* In Bootstrap and Foundation the padding top is a little different from the DataTables stylesheet */
+table.table thead th.sorting:after,
+table.table thead th.sorting_asc:after,
+table.table thead th.sorting_desc:after {
+  top: 8px;
+}
+#DataTables_Table_0{
+  border:none;
+}
+.dataTables_wrapper.no-footer div.dataTables_scrollHead table,
+.dataTables_wrapper.no-footer div.dataTables_scrollBody table {
+  border-bottom: none;
+}
+#DataTables_Table_0_paginate > span > span{
+  cursor: pointer;
+outline: 0;
+border: 1px solid #D8DDE5;
+border-right-width: 0;
+background: #FFF;
+padding: 4px 8px;
+}
+
+th, td { white-space: nowrap; }
+div.dataTables_wrapper {
+    width: 100%;
+    margin: 0 auto;
+}
+td.highlight {
+  background-color: #F7FAFC !important;
+}
+#DataTables_Table_0 > tbody > tr > td.center,
+#DataTables_Table_0 > thead > tr > th.center{
+  text-align: center
+}
+
+.panel .table-striped > tbody > tr:nth-child(odd):hover > td,
+.panel .table-striped > tbody > tr:nth-child(even):hover > td{
+  background-color: #F7FAFC !important;
+};
+/* Scrolling */
+div.dataTables_scrollHead table {
+  margin-bottom: 0 !important;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+div.dataTables_scrollHead table thead tr:last-child th:first-child,
+div.dataTables_scrollHead table thead tr:last-child td:first-child {
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+div.dataTables_scrollBody table {
+  border-top: none;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+div.dataTables_scrollBody tbody tr:first-child th,
+div.dataTables_scrollBody tbody tr:first-child td {
+  border-top: none;
+}
+
+div.dataTables_scrollFoot table {
+  margin-top: 0 !important;
+  border-top: none;
+}
+
+#DataTables_Table_0 > thead > tr{
+  height: 1px !important;
+}
+table.dataTable th:active {
+  outline: none;
 }
